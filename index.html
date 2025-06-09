@@ -1,0 +1,115 @@
+<!DOCTYPE hmtl>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TFG- Diseño de red de una clinica estética</title>
+	<link rel="stylesheet" href="css/tfg.css">
+</head>
+<body>
+	<header>
+		<h1>Diseño de red de una clínica estética</h1>
+		<p>Pasos para realizar el proyecto</p>
+	</header>
+
+	<nav>
+		<a href="#resumen">Resumen</a>
+		<a href="#introduccion">Introducción</a>
+		<a href="#justificacion">Justrificación y Objetivos</a>
+		<a href="#material">Material</a>
+		<a href="#resultado">Resultados y contenido</a>
+		<a href="#conclusiones">Conclusiones</a>
+	</nav>
+
+	<section id="resumen">
+		<h2>Resumen</h2>
+		<p>El objetivo principal de este trabajo de Fin de Grado es el diseño y la implementación de una infraestructura de red segura, escalable y segmentada para una clínica estética, que está compuesta por cuatro plantas, en la que cada área se organiza mediante VLANS. 
+
+		La realización de este proyecto incluye la instalación de un servidor DHCP centralizado que repartirá direcciones IP dinámicas a cada VLAN, otro servidor web donde se encuentra una página web de nuestra memoria  y un tercer servidor Windows con Active Directory para el control de grupos, usuarios y permisos mediante políticas de seguridad. La topología integrada es de una red jerárquica en estrella, con un switch CORE central, que conecta con otros switches de las otras plantas y la sala de servidores, además de, enlaces troncales que garantizan el tráfico entre VLANS. La metodología se trata de una planificación detallada por planta, con una selección de dispositivos de red adecuados (router Cisco, switches gestionables, puntos de acceso WiFi) y configuración de servicios claves como inter-VLAN routing, ACLs para la segmentación de tráfico, autenticación centralizada y copias de seguridad. </p>
+	</section>
+
+	<section id="introduccion">
+			<h2>Introducción</h2>
+			<p>En la actualidad contar con una infraestructura de red eficiente y segura se ha vuelto esencial para el buen funcionamiento de cualquier empresa en cualquier sector, incluyendo el de la estética. El objetivo de este trabajo es el diseño de una red informática para una clínica estética, con el fin de optimizar la comunicación interna, garantizar la seguridad de los datos de los pacientes y mejorar la gestión de servicios.   </p>
+	</section>
+
+	<section id="justificacion">
+		<h2>Justificación</h2>
+		<p>Los motivos que nos han llevado personal y profesionalmente a realizar este trabajo sobre este tema se deben a la creciente digitalización y optimización en sectores no tradicionales, así como la estética. Las clínicas estéticas trabajan con mucha información sensible de los pacientes, como sus datos personales, imágenes, historiales médicos entre otros, por lo que requiere una red informática segura y estructurada. 
+
+		Diseñando una red adaptada para este sector nos permite aplicar nuestros conocimientos adquiridos, como el de seguridad, diseño de redes y la gestión de sistemas entre otros. Este proyecto aporta una solución concreta además de mostrar la importancia de aplicar la informática en sectores nuevos.  </p>
+		<h2>Objetivos</h2>
+		<h3>Generales</h3>
+		<p>La clínica necesita una red segura y eficiente que aislé el tráfico por áreas (recepción, consultas, administración...), que permita el acceso controlado a servicios internos (archivos, sistema de citas), que ofrezca conectividad inalámbrica segura para los clientes y esteticistas, y además centralice la autenticación de usuarios (AD)</p>
+		<h3>Específicos</h3>
+		<p>Diseñar e implementar una red segmentada mediante VLANs. 
+
+		Configurar un único servidor DHCP que reparta direcciones por VLAN.  
+
+		Crear un servidor de Windows Server con Active Directory (AD) para la gestión de grupos, usuarios y permisos. 
+
+		Establecer una arquitectura jerárquica escalable y segura. 
+
+		Documentar pruebas, seguridad y propuestas de mejora. </p>
+	</section>
+
+	<section id="material">
+		<h2>Material</h2>
+		<p>Software de Simulación: Hemos utilizado el Cisco Packet Tracer para crear la infraestructura de la red y simularla. La herramienta Cisco Packet Tracer nos permite acceder a distintos dispositivos de red y realizar su configuración de manera virtual. </p>
+		<p>Sistemas operativos: Hemos instalado en VirtualBox, es un software de virtualización, en el instalamos Windows Server 2022 y en el configuramos los servicioscomo DHCP, DNS y Active Directory , para la gestión de usuarios. </p>
+	</section>
+
+	<section id="resultado">
+		<h2>Resultados y contenido</h2>
+		<p>Una vez decidido lo que vamos a implementar comenzamos con el diseño de red. Para ello creamos una tabla de direcciones de red para cada uno de los dispositivos que estaremos utilizando. </p>
+		<img src="media/TFG.jpg" alt="Tabla de direcciones">
+		<h3>Infraestrucura de red de la empresa</h3>
+		<p>Asi es como se ve la infraestructura de la empresa, cuenta con una VLAN para cada planta, en la primera el switch le da conexión a los equipos, telefono e impresora, en la segunda le da conexión a los telefonos y a partir de los teléfonos a los ordenadores, en la tercera el router home le da conexión a las tres tablets y en la cuarta los telefonos a los equipos y el swittch tambn le da a la impresora. Por ultimo tenemos la ultima VLAN que le da conexión a los tres servidores</p>
+		<img src="media/infraestructura.png">
+		<p>La red de nuestra clínica la hemos configurado con una topología jerárquica en estrella, con un switch central conectado a un router central y los switches de cada planta además de los servidores. 
+
+		Hemos creado VLAN para segmentar el tráfico por planta y servicio y hemos configurado un router para que gestione el enrutamiento entre VLAN y reenvíe solicitudes DHCP. Hemos añadido HomeRouters para el WiFi de los invitados y el personal con seguridad WPA2 y se intentó configurar telefonía IP con CME, aunque esta última funcionalidad quedó limitada por el simulador.</p>
+		<h3>Configuraciones que hemos hecho</h3>
+		<p>Hemos creado 7  VLANs para cada planta, para invitados, para servidores y para los teléfonos.  
+
+		Estas VLANs nos van a permitir mantener segmentado el tráfico y mejorar la seguridad y el rendimiento</p>
+		<h3>Servicio DNS</h3>
+		<p>El servicio de DNS lo hemos instalado ya que, permite traducir nombres de dominio en IP, y es necesario para la comunicación entre servidores y clientes aparte de otros dispositivos. A parte es necesario para otros servicios como el Active Directory (que lo instalamos más adelante), ya que depende del DNS para localizar controladores de dominio. </p>
+		<p>Activamos físicamente la interfaz FastEthernet 0/0 para permitir la comunicación con el switch central. </p>
+		<p>Configuramos los telefonos IP</p>
+		<p>Configuramos el HOMEROUTER</p>
+		<img src="media/DNS.png">
+		<h3>Servicio DHCP</h3>
+		<p>El servicio DHCP es necesario ya que facilita la asignación de IPs para empleados y dispositivos, esto evita tener que configurar manualmente cada dispositivo a su vez evitando errores de duplicación. Un gran beneficio de este servicio es que permite añadir nuevos dispositivos sin tener la necesidad de volver a configurarlo manualmente</p>
+		<img src="media/DHCP.png">
+		<h3>Servicio Active Directory</h3>
+		<img src="media/AD.png">
+		<p>l Active Directory es un servicio que almacena información sobre objetos en una red, así como los usuarios, equipos, impresoras etc. Además, lo utilizamos para la gestión de usuarios y grupos, el control de acceso, la autenticación centralizada, la aplicación de políticas de seguridad y una organización jerárquica. 
+
+		Dentro de la configuración crearemos un bosque, este es el nivel más alto de la jerarquía lógica, después de esta iría el dominio y después los usuarios. </p>
+		<h3>Firewall</h3>
+		<p>Un firewall es la herramienta de seguridad que actúa como un filtro entre nuestra red y el exterior. Este tiene unas reglas, son configuraciones que controlan el tráfico de red que puede entrar o salir (reglas de entrada o de salida). Estas reglas permiten o bloquean conexiones con puertos, protocolos o IPs. </p>
+	</section>
+
+	<section id="conclusiones">
+		<h2>Conclusiones</h2>
+		<p> Tras la finalización del proyecto y durante hemos podido analizar lo importante que es cada una de las configuraciones
+		tanto la de Cisco como la de Virtual Box. La realización de este proyecto nos ha mostrado que al ser Administradoras
+		en sistemas informáticos implicamos todos los conocimientos adquiridos
+		durante el ciclo de ASIR al ser capaces de reaizar e implementar tantos servicios
+		y aplicaciones juntas. Las principales Cisco y VirtualBox.</p>
+		
+	</section>
+
+	<footer>
+		<footer class="footer">
+    	<p>Nombre: Nathalia Alejandra Bernabe Miranda </p>
+    	<p>Fecha: 12 de junio de 2025</p>
+    	<p>Proyecto: TFG Diseño de red</p>
+ 		 </footer>
+	</footer>
+
+
+
+</body>	
+</html>
